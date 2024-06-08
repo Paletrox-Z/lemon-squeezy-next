@@ -1,5 +1,6 @@
 "use client";
 import { ProductCard, ProductType } from "@/components/ProductCard";
+import { initializeLemonSqueezy } from "@/utils/InitializeLemonSqueezy";
 import {
   getAuthenticatedUser,
   lemonSqueezySetup,
@@ -12,13 +13,6 @@ type HomePropType = {};
 
 type HomeStateType = {
   productList: ProductType[];
-  authUserResponse?: {
-    data?: any;
-    jsonapi?: any;
-    links?: any;
-    meta?: any;
-    error?: any;
-  };
   isLoading: boolean;
 };
 
@@ -26,26 +20,15 @@ export default class Home extends React.Component<HomePropType, HomeStateType> {
   constructor(props: HomePropType) {
     super(props);
     this.state = {
-      authUserResponse: {},
       productList: [],
       isLoading: false,
     };
-    this.initializeLemonSqueezy();
+    initializeLemonSqueezy();
   }
 
   componentDidMount(): void {
     this.loadProducts();
   }
-
-  initializeLemonSqueezy = async () => {
-    if (!this.state.authUserResponse?.data) {
-      await lemonSqueezySetup({
-        apiKey: process.env.NEXT_PUBLIC_LEMON_SQUEEZY_API_KEY!,
-      });
-
-      await getAuthenticatedUser();
-    }
-  };
 
   loadProducts = async () => {
     this.setState({

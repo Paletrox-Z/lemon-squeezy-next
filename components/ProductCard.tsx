@@ -28,7 +28,10 @@ export const ProductCard = (props: ProductType): ReactNode => {
       <div className="product-image" />
       <div className="product-card-title">
         <span>{props.name}</span>
-        <span>{props.price}</span>
+        <span>
+          <span>{props.price}</span>
+          {!props.isSubscription && <span>/-</span>}
+        </span>
       </div>
       <button
         onClick={() => checkoutProduct(props.id)}
