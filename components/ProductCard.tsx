@@ -22,22 +22,21 @@ const checkoutProduct = async (variantId: number) => {
 };
 
 export const ProductCard = (props: ProductType): ReactNode => {
-  const buttonText = props.isSubscription ? "Subscribe Now" : "Buy Now";
+  const buttonText = props.isSubscription ? "Subscribe @ " : "Buy @ ";
   return (
     <div className="product-card-parent">
       <div className="product-image" />
       <div className="product-card-title">
-        <span>{props.name}</span>
-        <span>
-          <span>{props.price}</span>
-          {!props.isSubscription && <span>/-</span>}
-        </span>
+        <div>{props.name}</div>
+        <div></div>
       </div>
       <button
         onClick={() => checkoutProduct(props.id)}
         className="product-purchase-button"
       >
-        {buttonText}
+        <span>{buttonText}</span>
+        <span>{props.price}</span>
+        {!props.isSubscription && <span>/-</span>}
       </button>
     </div>
   );

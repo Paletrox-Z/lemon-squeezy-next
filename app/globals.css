@@ -47,9 +47,10 @@ body {
     }
 
     .product-card-title {
-      display: flex;
-      justify-content: space-between;
       margin-bottom: 0.5rem;
+      width: 100%;
+      align-content: center;
+      text-align: center;
     }
 
     .product-purchase-button {
